@@ -6,12 +6,12 @@ const { param } = require('../routes');
 
 module.exports = {
   list(req, res) {
-    let queryParam = "";
+    let queryParam = ''; 
     let paramlimit = 10;
     if(req.query.limit != null){
       paramlimit = req.query.limit;
     }
-    if(queryParam != null){
+    if(req.query.q != undefined){
       queryParam = req.query.q;
     }
     return Movies
@@ -23,13 +23,13 @@ module.exports = {
         where:{
           [Sequelize.Op.or] : [
            { name: {
-              [Sequelize.Op.iLike]: '%'+req.query.q+'%'
+              [Sequelize.Op.iLike]: '%'+queryParam+'%'
             }}, {category: {
-              [Sequelize.Op.iLike]: '%'+req.query.q+'%'
+              [Sequelize.Op.iLike]: '%'+queryParam+'%'
             }},{ description: {
-              [Sequelize.Op.iLike]: '%'+req.query.q+'%'
+              [Sequelize.Op.iLike]: '%'+queryParam+'%'
             }}, {thumbnail: {
-              [Sequelize.Op.iLike]: '%'+req.query.q+'%'
+              [Sequelize.Op.iLike]: '%'+queryParam+'%'
             }}
           ]
           
