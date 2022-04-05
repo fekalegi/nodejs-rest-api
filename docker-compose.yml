@@ -1,0 +1,38 @@
+version: '2.1'
+
+services:
+  api:
+    build: .
+    environment:
+      DB_USERNAME: admin123
+      DB_PASSWORD: admin123
+      DB_NAME: mini-rest-api
+      DB_HOSTNAME: db
+    ports:
+      - 3000:3000
+    depends_on:
+      "db-postgres":
+        condition: service_started
+    networks:
+      - mini-rest
+  db-postgres:
+    image: postgres:14
+    container_name: db-postgres-aktiva
+    hostname: db
+    networks:
+      - mini-rest
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=admin123
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=mini-rest-api
+networks:
+  mini-rest:
+    driver: bridge
+volumes:
+  db-postgres:
+    driver: local

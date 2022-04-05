@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "admin123",
+    "password": "admin123",
+    "database": "mini-rest-api",
+    "host": "db",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "admin123",
+    "password": "admin123",
+    "database": "mini-rest-api",
+    "host": "db",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "admin123",
+    "password": "admin123",
+    "database": "mini-rest-api",
+    "host": "db",
+    "dialect": "postgres"
+  }
+}
